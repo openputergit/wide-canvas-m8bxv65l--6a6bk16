@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certification Practice Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Poppins', sans-serif; }
+        .progress-ring { transform: rotate(-90deg); }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div id="app" class="min-h-screen">
+        <!-- Navigation -->
+        <nav class="bg-white shadow-lg">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="flex justify-between h-16">
+                    <div class="flex">
+                        <div class="flex-shrink-0 flex items-center">
+                            <h1 class="text-2xl font-bold text-blue-600">CertPrep Pro</h1>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <button id="toggleAdmin" class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium">
+                            Switch to Admin
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="max-w-7xl mx-auto px-4 py-6">
+            <!-- User Portal -->
+            <div id="userPortal" class="space-y-6">
+                <!-- Exam Selection -->
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h2 class="text-xl font-semibold mb-4">Select Certification Exam</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <button class="p-4 border rounded-lg hover:bg-blue-50 focus:ring-2 focus:ring-blue-500">
+                            <h3 class="font-medium">Salesforce Admin</h3>
+                            <p class="text-sm text-gray-500">2500 Questions</p>
+                        </button>
+                        <button class="p-4 border rounded-lg hover:bg-blue-50">
+                            <h3 class="font-medium">Platform Developer I</h3>
+                            <p class="text-sm text-gray-500">Coming Soon</p>
+                        </button>
+                        <button class="p-4 border rounded-lg hover:bg-blue-50">
+                            <h3 class="font-medium">Platform Developer II</h3>
+                            <p class="text-sm text-gray-500">Coming Soon</p>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Progress Dashboard -->
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h2 class="text-xl font-semibold mb-4">Your Progress</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="p-4 border rounded-lg">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm text-gray-500">Questions Attempted</p>
+                                    <p class="text-2xl font-semibold">245</p>
+                                </div>
+                                <svg class="progress-ring w-16 h-16">
+                                    <circle class="text-gray-200" stroke-width="5" stroke="currentColor" fill="transparent" r="30" cx="32" cy="32"/>
+                                    <circle class="text-blue-500" stroke-width="5" stroke="currentColor" fill="transparent" r="30" cx="32" cy="32"
+                                        stroke-dasharray="188.5" stroke-dashoffset="94.25"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <!-- More progress stats... -->
+                    </div>
+                </div>
+
+                <!-- Practice Section -->
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h2 class="text-xl font-semibold mb-4">Practice Questions</h2>
+                    <div class="space-y-4">
+                        <div class="border rounded-lg p-4">
+                            <p class="font-medium">Question 1:</p>
+                            <p class="mt-2">What is the maximum number of custom objects allowed in a Salesforce org?</p>
+                            <div class="mt-4 space-y-2">
+                                <label class="flex items-center space-x-2">
+                                    <input type="radio" name="q1" value="a">
+                                    <span>A) 50</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="radio" name="q1" value="b">
+                                    <span>B) 200</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="radio" name="q1" value="c">
+                                    <span>C) 2000</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="radio" name="q1" value="d">
+                                    <span>D) Depends on the edition</span>
+                                </label>
+                            </div>
+                            <button class="mt-4 text-blue-600 hover:text-blue-800">Show Hint</button>
+                            <button class="mt-4 ml-4 text-blue-600 hover:text-blue-800">Show Explanation</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Portal (Hidden by default) -->
+            <div id="adminPortal" class="hidden space-y-6">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h2 class="text-xl font-semibold mb-4">Admin Dashboard</h2>
+                    <div class="space-y-4">
+                        <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                            <i class="bi bi-cloud-upload text-4xl text-gray-400"></i>
+                            <p class="mt-2">Drag and drop Excel file or click to upload</p>
+                            <input type="file" class="hidden" accept=".xlsx,.xls">
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-md">Upload Questions</button>
+                            <button class="text-blue-600 hover:text-blue-800">Download Template</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle between user and admin portals
+        document.getElementById('toggleAdmin').addEventListener('click', function() {
+            const userPortal = document.getElementById('userPortal');
+            const adminPortal = document.getElementById('adminPortal');
+            const isAdmin = userPortal.classList.contains('hidden');
+            
+            if (isAdmin) {
+                userPortal.classList.remove('hidden');
+                adminPortal.classList.add('hidden');
+                this.textContent = 'Switch to Admin';
+            } else {
+                userPortal.classList.add('hidden');
+                adminPortal.classList.remove('hidden');
+                this.textContent = 'Switch to User';
+            }
+        });
+
+        // Sample questions data structure
+        const questions = {
+            salesforceAdmin: [
+                {
+                    id: 1,
+                    question: "What is the maximum number of custom objects allowed in a Salesforce org?",
+                    options: [
+                        "50",
+                        "200",
+                        "2000",
+                        "Depends on the edition"
+                    ],
+                    correctAnswer: 3,
+                    explanation: "The number of custom objects allowed depends on your Salesforce edition. Enterprise Edition allows up to 2000 custom objects, while Professional Edition allows 200.",
+                    hint: "Think about different Salesforce editions and their limitations."
+                }
+                // More questions would be added here
+            ]
+        };
+
+        // Initialize progress tracking
+        let progress = {
+            attempted: 0,
+            correct: 0,
+            incorrect: 0,
+            sections: {}
+        };
+    </script>
+<script>document.body.addEventListener('wheel', e => { if (!e.ctrlKey) return; e.preventDefault(); return }, { passive: false })</script>
+	</body>
+</html>
